@@ -38,17 +38,19 @@ triangleTree, triangleNumber = buildTriangleGraphFromTxt("/Users/203369/Download
 # print triangleTree.number_of_nodes()
 # print triangleNumber
 
-for x in xrange(triangleNumber - 1, -1, -1):
-    neighbors =  triangleTree.neighbors(x)
+nodeList = triangleTree.nodes()
+nodeList.reverse()
+for currentNode in nodeList:
+    neighbors =  triangleTree.neighbors(currentNode)
     maxCapacity = 0
     for neighbor in neighbors:
-        capacity = triangleTree[x][neighbor]['capacity']
+        capacity = triangleTree[currentNode][neighbor]['capacity']
         if 'capacity' in triangleTree[neighbor]:
             capacity += triangleTree[neighbor]['capacity']
         if capacity > maxCapacity:
             maxCapacity = capacity
 
-    triangleTree[x]['capacity'] = maxCapacity
+    triangleTree[currentNode]['capacity'] = maxCapacity
 
 print triangleTree[0]
 
